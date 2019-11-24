@@ -1,0 +1,15 @@
+{% extends 'heartbit/base.html' %}
+
+
+{% block content %}
+
+{% if 'username' not in request.session %}
+	<meta http-equiv="refresh" content="0; url={% url 'heartbit-login' %}">
+
+
+{% endif %}
+
+
+{% endblock content %}
+
+

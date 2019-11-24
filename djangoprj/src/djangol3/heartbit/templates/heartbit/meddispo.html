@@ -1,0 +1,63 @@
+{% extends 'heartbit/base.html' %}
+
+{% block content %}
+{% load static %}
+ 
+{% if 'username'  in request.session %}
+ 			{% for med in medecins %}
+
+<style type="text/css">
+	
+	
+</style>
+
+<!-- News jumbotron -->
+<div class="jumbotron text-center hoverable p-4">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-4 offset-md-1  ">
+
+      <!-- Featured image -->
+      <div class="view overlay">
+        <img src="{% static '/OQ6UTW0.jpg' %}" class="img-fluid rounded-circle z-depth-9" alt="Sample image for first version of blog listing" >
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-3 text-md-left ml-3 mt-3">
+
+      <!-- Excerpt -->
+
+
+      <h4 class="h4 mb-4">Nom : Mr.{{med.nom_medecin}}</h4>
+
+      <p class="font-weight-normal">Email : {{med.email}}.</p>
+      <p> Adresse : {{med.adresse_cabinet}} .</p>
+      <a class="btn btn-primary btn-lg" href="../medecin/{{med.id}}" role="button">Rendez-vous</a>
+
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+</div>
+<!-- News jumbotron -->
+
+
+        {% endfor %}
+          
+
+      {% else %}
+
+      		<meta http-equiv="refresh" content="0; url={% url 'heartbit-home' %}">
+      {% endif %}
+{% endblock content %}

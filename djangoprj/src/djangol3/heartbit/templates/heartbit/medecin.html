@@ -1,0 +1,60 @@
+{% extends 'heartbit/base.html' %}
+
+{% block content %}
+ 
+{% if 'username'  in request.session %}
+<div class="card">
+
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Rendez-vous {% if confirm == "c" %} Confirmé le {{date}} {% else %} non confirmé {% endif %} </strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+<style type="text/css">
+  
+.card{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    width: 60%!important;
+    margin-left: 20%!important;
+}
+
+
+.info-color {
+    background-color: #2bbbad!important;
+}
+</style>
+  Nom : {{medecin.nom_medecin}}<br>
+  Prenom: {{medecin.prenom_medecin}}<br>
+  Adresse : {{medecin.adresse_cabinet}}<br>
+  Telephone : {{medecin.telephone}}<br>
+
+
+<form class="text-center"  method="POST">
+	
+	{% csrf_token %}
+ 
+ <div class="md-form">
+
+  <input type="date" id="materialRegisterFormFirstName" name="date" class="form-control">
+ </div>
+	<input type="hidden" value="{{medecin.id}}" name="rdv">
+	<button  class="btn btn-default"  type="submit" > Valider </button>
+</form>
+</div>
+</div>
+
+
+      {% endif %}
+
+{% endblock content %}

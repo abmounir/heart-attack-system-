@@ -1,0 +1,66 @@
+{% extends 'heartbit/base.html' %}
+
+{% block content %}
+{% if 'username' in request.session %}
+	<meta http-equiv="refresh" content="0; url={% url 'heartbit-home' %}">
+
+	
+{% else %}
+<div class="card">
+
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Log in</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+<style type="text/css">
+  
+.card{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    width: 60%!important;
+    margin-left: 20%!important;
+}
+
+
+.info-color {
+    background-color: #2bbbad!important;
+}
+</style>
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;"  method="POST">
+      {% csrf_token %}
+      <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="username" class="form-control">
+          <label for="materialRegisterFormFirstName">Username</label>
+     </div>
+      <!-- Password -->
+      <div class="md-form">
+        <input type="password" id="materialLoginFormPassword" name="password" class="form-control">
+        <label for="materialLoginFormPassword">Password</label>
+      </div>
+        <!-- Sign in button -->
+      <button class="btn btn-default btn-lg my-4 waves-effect z-depth-0" type="submit">Log in</button>
+
+      <!-- Register -->
+      <p>Not Registered?
+        <a href="{% url 'heartbit-home' %}">Register</a>
+      </p>
+    </form>
+    <!-- Form -->
+  </div>
+
+</div>
+
+{% endif %}
+{% endblock content %}

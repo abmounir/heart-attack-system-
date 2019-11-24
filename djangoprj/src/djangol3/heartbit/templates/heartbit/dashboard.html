@@ -1,0 +1,93 @@
+{% extends 'heartbit/base.html' %}
+
+{% block content %}
+{% if 'username'  in request.session %}
+<div class="card">
+  <h5 class="card-header info-color white-text text-center ">
+    <strong>Diagnostic</strong>
+  </h5>
+   {% if out %}
+
+    {% if out < 50.00  %}
+         <div class="alert alert-success justify-content " > Résultat du diagnostic   :  {{out}} %  , cela signifie que vous n'avez pas de maladie cardiaque.
+        </div>
+     {% else %}
+        <div class="alert alert-danger justify-content " > Résultat du diagnostic   :  {{out}} %  , cela signifie que vous avez une insuffisance cardiaque .
+        </div>
+        {% endif %}  
+   {% endif %}  
+  
+
+  <div class="ptt" >
+	<form method="POST" >
+		<div class="form-group">
+		{% csrf_token %}
+  		
+        <select class="browser-default custom-select" name="cp">
+        <option selected disabled="True">Types De Douleurs De Poitrine</option>
+        <option value="1">Douleur angineuse typique </option>
+        <option value="2">Douleur angineuse atypique</option>
+        <option value="3">Douleur thoracique non angineuse</option>
+        <option value="4">Asymptomatique</option>
+        </select>
+  	 <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="trestbps" class="form-control">
+          <label for="materialRegisterFormFirstName">Tension artérielle au repos en (mm Hg)</label>
+     </div>
+ <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="fbs" class="form-control">
+          <label for="materialRegisterFormFirstName">Glycémie à jeun en ( mg/dl) </label>
+     </div>
+  			
+  	
+  			<select class="browser-default custom-select" name="restecg">
+        <option selected disabled="True">Résultats électrocardiographiques au repos</option>
+        <option value="0"> Normal </option>
+        <option value="1"> Anomalies du segment ST</option>
+        <option value="2">Hypertrophie Ventriculaire Gauche (HVG)</option>
+        </select>
+  			
+ <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="chol" class="form-control">
+          <label for="materialRegisterFormFirstName"> cholestérol sérique en (mg/dl) </label>
+     </div>
+  		<div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="thalach" class="form-control">
+          <label for="materialRegisterFormFirstName">thalach (Fréquence cardiaque maximale atteinte) </label>
+     </div>
+
+<select class="browser-default custom-select" name="exang">
+        <option selected disabled="True">l'Exercice angor (Exercice induced angina)</option>
+        <option value="0"> No </option>
+        <option value="1"> Oui </option>
+        </select>
+
+     <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="oldpeak" class="form-control">
+          <label for="materialRegisterFormFirstName">oldpeak (Valeur de depression du sement ST) </label>
+     </div>
+
+  	</div>
+  <button type="submit" class="btn btn-danger btn-lg  btn-block ">Submit</button>
+</form>
+     
+<style type="text/css">
+  
+  .ptt {
+    padding: 3% !important;
+}
+
+.btn-danger {
+    background-color: #f61e27!important;
+    color: #fff;
+}
+</style>
+
+</div>
+</div>
+
+ {% else %}
+
+          <meta http-equiv="refresh" content="0; url={% url 'heartbit-home' %}">
+      {% endif %}
+{% endblock content %}

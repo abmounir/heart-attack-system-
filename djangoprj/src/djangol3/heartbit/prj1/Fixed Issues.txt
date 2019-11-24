@@ -1,0 +1,24 @@
+
+#FOR KIVY (opengl version)
+pip install kivy.deps.angle && set KIVY_GL_BACKEND=angle_sdl2
+
+
+
+#FOR TENSORFLOW (No module named tf) 
+
+
+Upgrade setuptools:
+pip install --upgrade -I setuptools
+
+Install TensorFlow again with --ignore-installed flag:
+pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-1.0.1-cp35-cp35m-win_amd64.whl
+
+and see if it solves the problem?
+#for warning in tensorflow
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+import tensorflow as tf
+
+
+#no module named tf
+pip install tensorflow==1.2.0 --ignore-installed

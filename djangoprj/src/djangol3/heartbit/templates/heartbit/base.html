@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>HeartBit</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'heartbit/css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'heartbit/css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'heartbit/css/style.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'heartbit/main.css' %}">
+</head>
+<style type="text/css">
+ .img-fluid1, .modal-dialog.cascading-modal.modal-avatar .modal-header, .video-fluid {
+    max-width: 200px !important;
+    height: 27px !important;
+
+}
+body{
+
+  background-color: #f1f1f1 !important;
+}
+</style>
+<body>
+<!--Navbar -->
+<nav class="mb-1 navbar sticky-top navbar-expand-lg navbar-dark default-color">
+  <a class="navbar-brand" href="{% url 'heartbit-home' %}"><img src="{% static '/logo.PNG' %}" class="img-fluid1"></a> <div class="mask rgba-white-slight"></div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'heartbit-home' %}">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+     
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      {% if 'username' in request.session %}
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'heartbit-logout' %}">Log out</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'heartbit-predict' %}"> Diagnostic </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><b> {{ request.session.username}} </b> </a>
+      </li>
+    
+      {% else %}
+   <li class="nav-item">
+        <a class="nav-link" href="{% url 'heartbit-login' %}">Log in</a>
+      </li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+</body>
+<!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'heartbit/js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'heartbit/js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'heartbit/js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'heartbit/js/mdb.min.js' %}"></script>
+</html>

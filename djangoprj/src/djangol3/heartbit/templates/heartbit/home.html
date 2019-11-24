@@ -1,0 +1,136 @@
+{% extends 'heartbit/base.html' %}
+
+{% block content %}
+<style type="text/css">
+  
+.card{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    width: 60%!important;
+    margin-left: 20%!important;
+}
+
+
+.info-color {
+    background-color: #2bbbad!important;
+}
+.pt-5, .py-5 {
+    padding-top: 10rem!important;
+}
+</style>
+{% if 'username'  in request.session %}
+<!-- Jumbotron -->
+<div class="card card-image" style="background-image: url(/static/medecin.jpg)";>
+  <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+    <div class="py-5">
+
+      <!-- Content -->
+      <h4 class="card-title">Consulter un Cardiologue </h4>
+            <p class="card-text">Rendez-vous en ligne . </p>
+            <p class="card-text"> Selon vos disponibilités </p>
+            
+            <a class="btn btn-primary" href="{% url 'heartbit-meddispo' %}" > Consulter </a>
+
+    </div>
+  </div>
+</div>
+<!-- Jumbotron -->
+         
+  {% else %}
+  <!-- Material form login -->
+<div class="card">
+
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Sign up</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+
+ {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;"  method="POST">
+      {% csrf_token %}
+      <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="username" class="form-control">
+          <label for="materialRegisterFormFirstName">Username</label>
+      </div>
+     <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="nom" class="form-control">
+          <label for="materialRegisterFormFirstName">Nom</label>
+      </div>
+      <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="prenom" class="form-control">
+          <label for="materialRegisterFormFirstName">Prenom</label>
+      </div>
+      <!-- Email -->
+      <div class="md-form">
+        <input type="email" id="materialLoginFormEmail" class="form-control" name="email">
+        <label for="materialLoginFormEmail">E-mail</label>
+      </div>
+     <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="adresse" class="form-control">
+          <label for="materialRegisterFormFirstName">Addresse</label>
+      </div>
+      <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="age" class="form-control">
+          <label for="materialRegisterFormFirstName">Age</label>
+      </div>
+      <div class="md-form">
+          <input type="text" id="materialRegisterFormFirstName" name="telephone" class="form-control">
+          <label for="materialRegisterFormFirstName">Telephone</label>
+      </div>
+      <select class="browser-default custom-select" name="sexe">
+        <option value="m">Homme</option>
+        <option value="f">Femme</option>
+      </select>
+      <!-- Password -->
+      <div class="md-form">
+        <input type="password" id="materialLoginFormPassword" name="password" class="form-control">
+        <label for="materialLoginFormPassword">Password</label>
+      </div>
+        <!-- Sign in button -->
+      <button class="btn btn-default btn-lg my-4 waves-effect z-depth-0" type="submit">Sign up</button>
+
+      <!-- Register -->
+      <p>Already Have an Account?
+        <a href="{% url 'heartbit-login' %}">Log in</a>
+      </p>
+    </form>
+    <!-- Form -->
+  </div>
+
+</div>
+<!-- Material form login -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('.mdb-select').materialSelect();
+});
+</script>
+
+      
+
+      
+
+      {% endif %}
+
+{% endblock content %}
+
+
+
+
