@@ -102,7 +102,7 @@ def showMedecin(request):
 	return render(request,'heartbit/meddispo.html',context)
 
 
-
+#prediction
 def predict(request):
 	out=np.array([])
 	y_f=''
